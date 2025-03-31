@@ -1,1 +1,14 @@
-<p>register works!</p>
+<div class="main-container">
+    <div class="register-div">
+        <h1>Register</h1>
+        <form action="">
+            <input class="name-input" type="text" name="name" formControlName="name" placeholder="Name"/>
+            <input class="email-input" type="email" name="email" formControlName="email" placeholder="Email"/>
+            <input class="password-input" type="password" name="password" formControlName="password" placeholder="Password"/>
+            <input class="city-input" type="text" name="city" formControlName="city" placeholder="City"/>
+            <input class="padel-level-input" type="double" name="padel-level" formControlName="padel-level" placeholder="Padel level"/>
+            <button>Register</button>
+        </form>
+        <a routerLink="/login">Already registered? <strong>Login now!</strong></a>
+    </div>
+</div>
