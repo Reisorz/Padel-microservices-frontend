@@ -1,0 +1,85 @@
+.main-container{
+    font-family: "Inter",sans-serif;
+    background-image: linear-gradient(#001b2ecc, #001b2e42 ),url(/assets/login.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    background-color: #0e0f19;
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1{
+    align-self: center;
+    font-size: 3rem;
+    color:  #001B2E;
+    margin-top: 60px;
+}
+
+.login-div{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(245, 245, 245, 0.288);
+    width: 30vw;
+    margin-left: 200px;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgba(245, 245, 245, 0.445);
+    border-width: 2px;
+}
+
+.login-div form {
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    margin: 20px 80px;
+    color:  #001B2E;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #001B2E;
+    background: none;
+    font-size: 2rem;
+    padding: 10px 10px 10px 60px;
+}
+
+.email-input{
+    background-image: url(/assets/email-icon.svg);
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
+.password-input{
+    background-image: url(/assets/pass-icon.svg);
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
+button{
+    color: #FFEFD3;
+    align-self: center;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    border: none;
+    height: 50px;
+    width: 60%;
+    margin-top: 30px;
+    background-color:  #001B2E;
+}
+
+a {
+    align-self: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color:#001B2E;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
