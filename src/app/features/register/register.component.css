@@ -70,6 +70,7 @@ input{
 
 .padel-level-input{
     background-image: url(/assets/padel-level-icon.svg);
+    direction: none;
 }
 
 button{
@@ -84,6 +85,18 @@ button{
     background-color:  #001B2E;
 }
 
+.error-message{
+    color: #5f2119;
+    align-self: center;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+button:disabled{
+    background-color: #001b2e5e;
+    color: #ffefd356;
+}
+
 a {
     align-self: center;
     font-size: 1.5rem;
@@ -91,4 +104,18 @@ a {
     color:#001B2E;
     margin-top: 30px;
     margin-bottom: 60px;
+}
+
+/* Elimina las flechas en Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Elimina las flechas en Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: none;
+  -moz-appearance: textfield;
 }

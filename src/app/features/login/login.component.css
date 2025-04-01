@@ -75,6 +75,11 @@ button{
     background-color:  #001B2E;
 }
 
+button:disabled{
+    background-color: #001b2e5e;
+    color: #ffefd356;
+}
+
 a {
     align-self: center;
     font-size: 1.5rem;

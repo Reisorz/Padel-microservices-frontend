@@ -1,13 +1,26 @@
 <div class="main-container">
     <div class="register-div">
         <h1>Register</h1>
-        <form action="">
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
             <input class="name-input" type="text" name="name" formControlName="name" placeholder="Name"/>
+            <div class="error-message" *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')">Name is required</div>
+
             <input class="email-input" type="email" name="email" formControlName="email" placeholder="Email"/>
+            <div class="error-message" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')">Email is required</div>
+            <div class="error-message" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')">Email is invalid</div>
+
             <input class="password-input" type="password" name="password" formControlName="password" placeholder="Password"/>
+            <div class="error-message" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')">Password is required</div>
+            <div class="error-message" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('pattern')">Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, 1 symbol & min 8 characters.</div>
+
             <input class="city-input" type="text" name="city" formControlName="city" placeholder="City"/>
-            <input class="padel-level-input" type="double" name="padel-level" formControlName="padel-level" placeholder="Padel level"/>
-            <button>Register</button>
+            <div class="error-message" *ngIf="registerForm.get('city')?.touched && registerForm.get('city')?.hasError('required')">City is required</div>
+
+            <input class="padel-level-input" type="number" inputmode="numeric" name="padelLevel" min="0" max="7" formControlName="padelLevel" placeholder="Padel level (0-7)"/>
+            <div class="error-message" *ngIf="registerForm.get('padelLevel')?.touched && registerForm.get('padelLevel')?.hasError('required')">Padel level is required</div>
+            <div class="error-message" *ngIf="registerForm.get('padelLevel')?.touched && registerForm.get('padelLevel')?.hasError('pattern')">Padel level must be between 0 and 7</div>
+
+            <button type="submit" [disabled]="registerForm.invalid">Register</button>
         </form>
         <a routerLink="/login">Already registered? <strong>Login now!</strong></a>
     </div>
