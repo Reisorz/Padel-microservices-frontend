@@ -38,6 +38,7 @@ export class RegisterComponent {
 
       this.userService.registerUser(this.request).subscribe({
         next:(data) => {
+          console.log('Server response:', data.message);
           this.toastr.success("You have been register succesfully!", "Registration completed!")
           this.router.navigate(['/login']);
         },

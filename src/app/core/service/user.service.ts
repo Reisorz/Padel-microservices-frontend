@@ -13,6 +13,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   registerUser(request: UserRegisterRequest) {
-    return this.http.post<String>(`${this.urlBase}/register-user` , request);
+    return this.http.post<{message: string}>(`${this.urlBase}/register-user` , request);
   }
 }

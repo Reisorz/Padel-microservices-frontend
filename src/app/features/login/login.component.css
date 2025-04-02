@@ -73,11 +73,20 @@ button{
     width: 60%;
     margin-top: 30px;
     background-color:  #001B2E;
+    cursor: pointer;
 }
 
 button:disabled{
     background-color: #001b2e5e;
     color: #ffefd356;
+    cursor:auto;
+}
+
+.error-message{
+    color: #5f2119;
+    align-self: center;
+    margin-left: 80px;
+    margin-right: 80px;
 }
 
 a {
