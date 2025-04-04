@@ -1,0 +1,20 @@
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #001B2E;
+    width: 100vw;
+    height: 150px;
+    color: #eeeeee;
+}
+
+.footer-part{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    gap: 40px;
+}
+
+img{
+    height: 30px;
+}
