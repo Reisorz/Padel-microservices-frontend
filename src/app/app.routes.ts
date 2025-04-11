@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
-import { SearchMatchComponent } from './features/search-match/search-match/search-match.component';
+import { SearchMatchComponent } from './features/search-match/search-match.component';
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 
