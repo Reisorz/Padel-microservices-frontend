@@ -1,6 +1,6 @@
 <section class="matches-section">
     <div class="matches-grid">
-        <div class="match-card">
+        <div class="match-card" *ngFor="let match of listPadelMatches">
             <div class="match-date">Saturday 12 april | 19:00</div>
             <div class="match-level">
                 <div>Competitive</div>
@@ -41,7 +41,6 @@
                     <div>90min</div>
                 </div>
             </div>
-                
         </div>
     </div>
 </section>
