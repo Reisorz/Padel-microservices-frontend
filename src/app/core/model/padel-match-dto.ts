@@ -3,7 +3,7 @@ import { MatchPlayer } from "./match-player";
 export class PadelMatchDTO {
     id?: number;
     matchDateStart!: Date;
-    matchDateEnd?: Date;  
+    matchDateEnd!: Date;  
     durationInMinutes!: number;
     isCompetitive!: boolean;
     isPrivate!: boolean;

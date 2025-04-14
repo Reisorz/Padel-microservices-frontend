@@ -1,7 +1,7 @@
 <section class="matches-section">
     <div class="matches-grid">
         <div class="match-card" *ngFor="let match of listPadelMatches">
-            <div class="match-date">Saturday 12 april | 19:00</div>
+            <div class="match-date">{{ match.matchDateStart | date:'EEEE d MMMM | HH:mm':'Europe/Madrid' }}</div>
             <div class="match-level">
                 <div>Competitive</div>
                 <div>2.9 - 3.5</div>

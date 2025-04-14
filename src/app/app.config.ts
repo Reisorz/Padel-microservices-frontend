@@ -6,6 +6,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { tokenInterceptor } from './core/interceptor/token.interceptor';
+import { DatePipe } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideToastr(),
     provideAnimations(),
-    provideHttpClient(withInterceptors([tokenInterceptor]), withFetch())
+    provideHttpClient(withInterceptors([tokenInterceptor]), withFetch()),
+    DatePipe
   ]
 };
