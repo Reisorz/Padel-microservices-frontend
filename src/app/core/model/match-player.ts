@@ -2,7 +2,7 @@ export class MatchPlayer {
     userid: number;
     name: string;
     padelLevel: number;
-    isOrganizer: boolean;
+    organizer: boolean;
     team: Team;
 }
 

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { PadelMatchDTO } from '../../core/model/padel-match-dto';
 import { PadelMatchService } from '../../core/service/padel-match.service';
-import { match } from 'assert';
+import { MatchPlayer } from '../../core/model/match-player';
 
 @Component({
   selector: 'app-search-match',
@@ -33,11 +33,20 @@ export class SearchMatchComponent {
           matchDateEnd: new Date(match.matchDateEnd)
         }))
         console.log(this.listPadelMatches)
-        console.log(new Date)
       },
       error: (error: any) => {
         console.log(error);
       },
     });
   }
+
+  getTeamPlayers(match: PadelMatchDTO, team: 'A' | 'B'): (MatchPlayer | null)[] {
+    const teamPlayers: (MatchPlayer | null)[] = match.players.filter((player: MatchPlayer) => player.team === team);
+
+    while (teamPlayers.length < 2) {
+      teamPlayers.push(null);
+    }
+    return teamPlayers;
+  }
+
 }

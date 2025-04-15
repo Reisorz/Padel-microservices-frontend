@@ -1,46 +1,64 @@
 <section class="matches-section">
-    <div class="matches-grid">
-        <div class="match-card" *ngFor="let match of listPadelMatches">
-            <div class="match-date">{{ match.matchDateStart | date:'EEEE d MMMM | HH:mm':'Europe/Madrid' }}</div>
-            <div class="match-level">
-                <div>Competitive</div>
-                <div>2.9 - 3.5</div>
-            </div>
-            <div class="match-players">
-                <div class="team">
-                    <div class="player">
-                        <div class="player-photo"></div>
-                        <div>Miguel</div>
-                        <div class="player-level">3.25</div>
-                    </div>
-                    <div class="player">
-                        <div class="player-photo"></div>
-                        <div>Miguel</div>
-                        <div class="player-level">3.25</div>
-                    </div>
+  <div class="matches-grid">
+    <div class="match-card" *ngFor="let match of listPadelMatches">
+      <div class="match-date">
+        {{
+          match.matchDateStart | date : "EEEE d MMMM | HH:mm" : "Europe/Madrid"
+        }}
+      </div>
+      <div class="match-level">
+        <div>{{ match.competitive ? "Competitive" : "Friendly" }}</div>
+        <div>{{ match.matchLevelStart }} - {{ match.matchLevelEnd }}</div>
+      </div>
+      <div class="match-players">
+        <div class="team">
+          <ng-container *ngFor="let player of getTeamPlayers(match, 'A')">
+            <div class="player">
+              <ng-container *ngIf="player; else joinSlotA">
+                <div class="player-photo"></div>
+                <div>{{ player.name }}</div>
+                <div class="player-level">{{ player.padelLevel }}</div>
+              </ng-container>
+              <ng-template #joinSlotA>
+                <div class="join-slot">
+                  <div class="player">
+                    <div class="player-photo"></div>
+                    <div class="join">Join</div>
+                  </div>
                 </div>
-                <hr>
-                <div class="team">
-                    <div class="player">
-                        <div class="player-photo"></div>
-                        <div>Miguel</div>
-                        <div class="player-level">3.25</div>
-                    </div>
-                    <div class="player">
-                        <div class="player-photo"></div>
-                        <div>Miguel</div>
-                        <div class="player-level">3.25</div>
-                    </div>
-                </div>
+              </ng-template>
             </div>
-            <div class="card-footer">
-                <div class="footer-padel-court">Padel world center</div>
-                <div class="footer-price-time">
-                    <div>5.50€</div>
-                    <hr>
-                    <div>90min</div>
-                </div>
-            </div>
+          </ng-container>
         </div>
+        <hr />
+        <div class="team">
+          <ng-container *ngFor="let player of getTeamPlayers(match, 'B')">
+            <div class="player">
+              <ng-container *ngIf="player; else joinSlotA">
+                <div class="player-photo"></div>
+                <div>{{ player.name }}</div>
+                <div class="player-level">{{ player.padelLevel }}</div>
+              </ng-container>
+              <ng-template #joinSlotA>
+                <div class="join-slot">
+                  <div class="player">
+                    <div class="player-photo"></div>
+                    <div class="join">Join</div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="footer-padel-court">{{match.court.name}} | {{match.court.address}}</div>
+        <div class="footer-price-time">
+          <div>{{match.pricePerPerson.toFixed(2)}} €</div>
+          <hr />
+          <div>{{match.durationInMinutes}}min</div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

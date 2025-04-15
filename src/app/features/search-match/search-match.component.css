@@ -71,6 +71,11 @@ hr{
     border-radius: 10px;
 }
 
+.join{
+    font-weight: bold;
+    color: #294C60;
+}
+
 .card-footer{
     display: flex;
     justify-content: space-between;
@@ -82,6 +87,7 @@ hr{
 
 .footer-padel-court{
     padding: 20px;
+    font-weight: bold;
 }
 
 .footer-price-time{

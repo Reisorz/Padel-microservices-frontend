@@ -1,12 +1,13 @@
 import { MatchPlayer } from "./match-player";
+import { PadelCourtDTO } from "./padel-court-dto";
 
 export class PadelMatchDTO {
     id?: number;
     matchDateStart!: Date;
     matchDateEnd!: Date;  
     durationInMinutes!: number;
-    isCompetitive!: boolean;
-    isPrivate!: boolean;
+    competitive!: boolean;
+    private!: boolean;
     pricePerPerson!: number;
     matchLevelStart!: number;
     matchLevelEnd!: number;
@@ -15,7 +16,7 @@ export class PadelMatchDTO {
     scoreB: number[] = [];
     isResultValidated?: boolean;
     winner?: Winner;
-    padelCourtId!: number;
+    court!: PadelCourtDTO;
 }
 
 export enum Winner {
