@@ -1,0 +1,16 @@
+.create-match-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-match-form{
+    margin: 100px;
+    height: 1000px;
+    width: 800px;
+    background-color: whitesmoke;
+    border: solid;
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: #ADB6C4;
+}

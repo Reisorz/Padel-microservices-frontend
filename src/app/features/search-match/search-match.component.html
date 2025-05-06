@@ -1,4 +1,8 @@
 <section class="matches-section">
+  <div class="filters-div">
+    <div>Filters</div>
+    <button class="new-match-button" routerLink="/create-match">New match</button>
+  </div>
   <div class="matches-grid">
     <div class="match-card" *ngFor="let match of listPadelMatches">
       <div class="match-date">

@@ -3,6 +3,37 @@
     height: fit-content;
 }
 
+.filters-div{
+    background-color: #ced8e9;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-match-button{
+    height: 60px;
+    min-width: 260px;
+    font-size: 1.8rem;
+    color: #fff;
+    padding: 20px 20px 20px 80px;
+    border-radius: 100px;
+    border: none;
+    background-image: url(/assets/plus-icon.svg);
+    background-color: #00102e;
+    background-position: 30px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.new-match-button:hover{
+    background-color: #00102ec7;
+}
+
 .matches-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 3fr));
@@ -57,12 +88,12 @@ hr{
 }
 
 .player-photo{
-    width: 75px; /* Tamaño del círculo */
+    width: 75px; 
     height: 75px;
-    border-radius: 50%; /* Esto lo convierte en círculo */
-    overflow: hidden; /* Oculta lo que se salga del círculo */
-    border: 4px solid #fff; /* Opcional: borde blanco */
-    box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Sombra opcional */
+    border-radius: 50%; 
+    overflow: hidden;
+    border: 4px solid #fff; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); 
 }
 
 .player-level{

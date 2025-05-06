@@ -5,6 +5,7 @@ import { SearchMatchComponent } from './features/search-match/search-match.compo
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { authGuard } from './core/guard/auth.guard';
+import { CreateMatchComponent } from './features/create-match/create-match.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -16,7 +17,8 @@ export const routes: Routes = [
       path: '',
       component: MainLayoutComponent,
       children: [
-        { path: 'search-match', component: SearchMatchComponent, canActivate:[authGuard]}
+        { path: 'search-match', component: SearchMatchComponent, canActivate:[authGuard]},
+        { path: 'create-match', component: CreateMatchComponent, canActivate:[authGuard]}
       ]
     }
   ];
