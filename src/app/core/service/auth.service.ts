@@ -16,4 +16,8 @@ export class AuthService {
   login(authUserDTO: AuthUserDTO) {
     return this.http.post<TokenDTO>(`${this.urlBase}/login` , authUserDTO);
   }
+
+  logout(){
+    return this.http.post<{message: string}>(`${this.urlBase}/logout`, {});
+  }
 }

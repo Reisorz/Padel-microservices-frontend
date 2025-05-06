@@ -41,4 +41,8 @@ export class TokenService {
       localStorage.setItem("email", email);
     }
   }
+
+  public removeUserDetails() {
+    localStorage.removeItem("email");
+  }
 }
