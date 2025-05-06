@@ -45,4 +45,17 @@ export class TokenService {
   public removeUserDetails() {
     localStorage.removeItem("email");
   }
+
+  isLoggedIn(): boolean {
+    const token = this.getAccessToken();
+    if (!token){
+      return false;
+    } 
+  
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationTime = payload.exp;
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    return currentTime < expirationTime;
+  }
 }
