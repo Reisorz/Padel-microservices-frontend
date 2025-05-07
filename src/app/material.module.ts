@@ -13,7 +13,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from "@angular/material/core";
+import {  MatNativeDateModule } from "@angular/material/core";
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
     exports: [
@@ -31,7 +32,9 @@ import { MatNativeDateModule } from "@angular/material/core";
         MatPaginatorModule,
         MatAutocompleteModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatMomentDateModule,
+        
 
     ]
 })
