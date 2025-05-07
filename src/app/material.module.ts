@@ -13,8 +13,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {  MatNativeDateModule } from "@angular/material/core";
-import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import {  DateAdapter, MatNativeDateModule } from "@angular/material/core";
+import { MatMomentDateModule, provideMomentDateAdapter } from "@angular/material-moment-adapter";
+import { MY_DATE_FORMAT } from "./core/date-format/date-format";
 
 @NgModule({
     exports: [
@@ -34,8 +35,13 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
         MatDatepickerModule,
         MatNativeDateModule,
         MatMomentDateModule,
-        
-
-    ]
+    ],
+    providers: [ provideMomentDateAdapter(MY_DATE_FORMAT, { useUtc: true })]
 })
-export class MaterialModule { }
+export class MaterialModule { 
+
+    constructor(date: DateAdapter<Date>) {
+        date.getFirstDayOfWeek = () => 1;
+      }
+    
+}
