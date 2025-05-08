@@ -38,12 +38,12 @@
         <div class="team">
           <ng-container *ngFor="let player of getTeamPlayers(match, 'B')">
             <div class="player">
-              <ng-container *ngIf="player; else joinSlotA">
+              <ng-container *ngIf="player; else joinSlotB">
                 <div class="player-photo"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
               </ng-container>
-              <ng-template #joinSlotA>
+              <ng-template #joinSlotB>
                 <div class="join-slot">
                   <div class="player">
                     <div class="player-photo"></div>

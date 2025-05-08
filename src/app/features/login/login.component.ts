@@ -36,7 +36,7 @@ export class LoginComponent {
       this.authService.login(this.request).subscribe({
         next:(data) => {
           this.tokenService.setAccessToken(data.token)
-          this.tokenService.getUserDetailsFromToken()
+          this.tokenService.setUserDetailsFromToken()
           this.toastr.success("You have logged in succesfully!", "Login completed!")
           this.router.navigate(['/search-match']);
         },

@@ -33,17 +33,23 @@ export class TokenService {
     }
   }
 
-  public getUserDetailsFromToken(): void {
+  public setUserDetailsFromToken(): void {
     const token = this.getAccessToken();
     if (token && this.isBrowser) {
       const decoded: any = jwtDecode(token);
       const email = decoded.sub ?? '';
+      const id = decoded.id ?? '';
       localStorage.setItem("email", email);
+      localStorage.setItem("id", id);
     }
   }
 
+  public getUserId(){
+    return Number(localStorage.getItem("id"))
+  }
+
   public removeUserDetails() {
-    localStorage.removeItem("email");
+    localStorage.clear();
   }
 
   isLoggedIn(): boolean {
@@ -58,4 +64,5 @@ export class TokenService {
 
     return currentTime < expirationTime;
   }
+
 }
