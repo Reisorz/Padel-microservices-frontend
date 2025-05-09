@@ -6,7 +6,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table"
 import {MatPaginatorModule} from "@angular/material/paginator"
 import {MatSortModule} from "@angular/material/sort"
-import {MatDialogModule} from "@angular/material/dialog"
+import {MatDialog, MatDialogModule} from "@angular/material/dialog"
 import {MatSelectModule} from "@angular/material/select"
 import {MatCheckboxModule} from "@angular/material/checkbox"
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -36,7 +36,8 @@ import { MatTimepickerModule, provideNativeDateTimeAdapter } from "@dhutaryan/ng
         MatDatepickerModule,
         MatNativeDateModule,
         MatMomentDateModule,
-        MatTimepickerModule
+        MatTimepickerModule,
+        MatDialogModule
     ],
     providers: [ provideMomentDateAdapter(MY_DATE_FORMAT, { useUtc: true }),
         provideNativeDateTimeAdapter()

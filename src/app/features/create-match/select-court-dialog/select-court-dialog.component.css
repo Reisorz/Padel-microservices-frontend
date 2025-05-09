@@ -1,0 +1,28 @@
+ul{
+    list-style-type: none;
+    padding: 0px;
+}
+
+.courts-list-section{
+    margin: 50px;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 3rem;
+    color: #001B2E;
+}
+
+.court{
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.court:hover{
+    transform: scale(1.02);
+}
+

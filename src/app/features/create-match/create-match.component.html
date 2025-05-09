@@ -91,9 +91,18 @@
       </div>
 
       <div class="court-section">
+        <div class="court-buttons">
+          <button type="button" class="select-court-button"  (click)="openSelectCourteDialog()">Select a court</button>
+          <button type="button" class="new-court-button" (click)="openNewCourteDialog()">New Court</button>
+        </div>
 
+        <div class="court" *ngIf="selectedCourt; else noCourtSelected">
+          <div>{{ selectedCourt.name }} | Court Nº {{ selectedCourt.number }} | {{ selectedCourt.address }}</div>
+          <div>{{ selectedCourt.glass ? 'Glass' : 'Concrete' }} | {{ selectedCourt.exterior ? 'Outdoor' : 'Indoor' }}
+          </div>
+        </div>
+        <ng-template #noCourtSelected>No court selected!</ng-template>
       </div>
-
     </form>
   </div>
 </section>

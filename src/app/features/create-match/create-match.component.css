@@ -24,7 +24,7 @@ h1{
 .create-match-form{
     margin: 100px;
     margin-top: 0px;
-    padding: 30px;
+    padding: 50px;
     background-color: whitesmoke;
     border: solid;
     border-radius: 20px;
@@ -104,4 +104,34 @@ hr{
 .join{
     font-weight: bold;
     color: #294C60;
+}
+
+.court-buttons{
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    height: 50px;
+    border-radius: 100px;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #001B2E;
+    color: whitesmoke;
+}
+
+
+.court{
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #dce9f0   ;
 }

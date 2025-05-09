@@ -1,0 +1,9 @@
+<section class="courts-list-section">
+    <h1>Select a court</h1>
+    <ul>
+        <li class="court" *ngFor="let court of courts" (click)="selectCourt(court)">
+            <div>{{ court.name }} | Court Nº {{ court.number }} | {{ court.address }}</div>
+            <div>{{ court.glass ? 'Glass' : 'Concrete' }} | {{ court.exterior ? 'Outdoor' : 'Indoor' }}</div>
+        </li>
+    </ul>
+</section>
