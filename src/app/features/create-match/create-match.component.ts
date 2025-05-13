@@ -10,11 +10,12 @@ import { PadelCourtService } from '../../core/service/padel-court.service';
 import { SelectCourtDialogComponent } from './select-court-dialog/select-court-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewCourtDialogComponent } from './new-court-dialog/new-court-dialog.component';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 @Component({
   selector: 'app-create-match',
   standalone: true,
-  imports: [RouterModule, MaterialModule, CommonModule],
+  imports: [RouterModule, MaterialModule, CommonModule, NgxMatTimepickerModule],
   templateUrl: './create-match.component.html',
   styleUrl: './create-match.component.css',
 })
@@ -73,5 +74,10 @@ export class CreateMatchComponent {
         this.selectedCourt = selectedCourt;
       }
     });
+  }
+
+  onTimeSelected(selected: string): void {
+    console.log('Hora seleccionada:', selected);
+    // selected vendrá en formato "HH:mm", p. ej. "14:30"
   }
 }

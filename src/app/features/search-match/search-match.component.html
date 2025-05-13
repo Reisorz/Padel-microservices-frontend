@@ -56,7 +56,10 @@
         </div>
       </div>
       <div class="card-footer">
-        <div class="footer-padel-court">{{match.court.name}} | {{match.court.address}}</div>
+        <div class="footer-padel-court">
+          <div>{{match.court.name}} </div>
+          <div> {{match.court.address}}</div>
+        </div>
         <div class="footer-price-time">
           <div>{{match.pricePerPerson.toFixed(2)}} €</div>
           <hr />
