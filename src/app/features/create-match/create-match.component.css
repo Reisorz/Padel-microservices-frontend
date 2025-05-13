@@ -84,6 +84,7 @@ hr{
     text-align: center;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .player-photo{
@@ -106,7 +107,7 @@ hr{
     color: #294C60;
 }
 
-.court-buttons{
+.court-buttons-div{
     display: flex;
     gap: 30px;
     margin-top: 50px;
@@ -124,15 +125,33 @@ button{
     border: none;
     padding: 20px;
     cursor: pointer;
-    background-color: #001B2E;
+    background-color:#294C60;
     color: whitesmoke;
 }
 
+.cancel-button{
+    background-color: #001B2E;
+}
 
-.court{
+.create-match-button{
+    background-color:#FFC759 ;
+    color: #001B2E;
+}
+
+
+
+.court {
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
     background-color: #dce9f0;
+}
+
+
+.submit-div{
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
 }
 

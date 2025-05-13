@@ -8,10 +8,14 @@ import { PadelMatchDTO } from '../model/padel-match-dto';
 export class PadelMatchService {
 
   private urlBase = 'http://localhost:8080/padel-match';
-  
-    constructor(private http: HttpClient) {}
-  
-    getAllMatchesAndPlayers() {
-      return this.http.get<PadelMatchDTO[]>(`${this.urlBase}/get-all-matches-and-players`);
-    }
+
+  constructor(private http: HttpClient) { }
+
+  getAllMatchesAndPlayers() {
+    return this.http.get<PadelMatchDTO[]>(`${this.urlBase}/get-all-matches-and-players`);
+  }
+
+  createMatch(){
+    
+  }
 }

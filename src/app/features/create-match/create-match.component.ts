@@ -11,6 +11,7 @@ import { SelectCourtDialogComponent } from './select-court-dialog/select-court-d
 import { MatDialog } from '@angular/material/dialog';
 import { NewCourtDialogComponent } from './new-court-dialog/new-court-dialog.component';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { SelectPlayerDialogComponent } from './select-player-dialog/select-player-dialog.component';
 
 @Component({
   selector: 'app-create-match',
@@ -49,7 +50,7 @@ export class CreateMatchComponent {
   }
 
   //Select court dialog
-  openSelectCourteDialog(){
+  selectCourteDialog() {
     const dialogRef = this.dialog.open(SelectCourtDialogComponent, {
       width: '50vw',
       minWidth: '600px',
@@ -63,12 +64,13 @@ export class CreateMatchComponent {
   }
 
   //New court dialog
-  openNewCourteDialog(){
+  newCourteDialog() {
     const dialogRef = this.dialog.open(NewCourtDialogComponent, {
       width: '50vw',
       minWidth: '600px',
       maxWidth: '1000px',
     });
+
     dialogRef.afterClosed().subscribe((selectedCourt: PadelCourtDTO | undefined) => {
       if (selectedCourt) {
         this.selectedCourt = selectedCourt;
@@ -77,7 +79,25 @@ export class CreateMatchComponent {
   }
 
   onTimeSelected(selected: string): void {
-    console.log('Hora seleccionada:', selected);
-    // selected vendrá en formato "HH:mm", p. ej. "14:30"
+    console.log('Time selected', selected);
+  }
+
+  //Add player dialog
+  addPlayerDialog(team: 'A' | 'B', index: number): void {
+    const dialogRef = this.dialog.open(SelectPlayerDialogComponent, {
+      width: '50vw',
+      minWidth: '600px',
+      maxWidth: '1000px',
+      data: { team, index }
+    });
+
+    dialogRef.afterClosed().subscribe((selectedUser: UserDto | undefined) => {
+      if (!selectedUser) { return; }
+      if (team === 'A') {
+        this.teamA[index] = selectedUser;
+      } else {
+        this.teamB[index] = selectedUser;
+      }
+    });
   }
 }

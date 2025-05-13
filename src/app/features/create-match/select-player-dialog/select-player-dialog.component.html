@@ -1,0 +1,8 @@
+<section class="users-list-section">
+    <h1>Select a player</h1>
+    <ul>
+        <li class="user" *ngFor="let user of users" (click)="selectUser(user)">
+            <div>Photo: {{user.name}}</div>
+        </li>
+    </ul>
+</section>
