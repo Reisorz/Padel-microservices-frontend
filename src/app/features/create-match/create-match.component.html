@@ -1,12 +1,12 @@
 <section class="create-match-section">
   <h1>Create a match</h1>
   <div class="create-match-form">
-    <form>
+    <form [formGroup]="createMatchFormGroup">
 
       <div class="date-time-section">
         <mat-form-field class="datepicker">
           <mat-label>Match date</mat-label>
-          <input matInput [matDatepicker]="picker" />
+          <input matInput [matDatepicker]="picker" formControlName="matchDate" />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -14,13 +14,13 @@
 
         <mat-form-field>
           <mat-label>Match time</mat-label>
-          <input matInput [ngxMatTimepicker]="timepicker" readonly [format]="24">
+          <input matInput [ngxMatTimepicker]="timepicker" readonly [format]="24" formControlName="matchTime">
           <ngx-mat-timepicker #timepicker (timeSet)="onTimeSelected($event)"></ngx-mat-timepicker>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Duration in minutes</mat-label>
-          <mat-select>
+          <mat-select formControlName="durationInMinutes">
             @for (duration of durations; track duration) {
             <mat-option [value]="duration">{{ duration }} min</mat-option>
             }
@@ -30,14 +30,14 @@
 
       <div class="type-price-section">
         <div class="checkboxes">
-          <mat-checkbox class="check-competitive">Competitive</mat-checkbox>
-          <mat-checkbox class="check-private">Private</mat-checkbox>
+          <mat-checkbox class="check-competitive" formControlName="competitive">Competitive</mat-checkbox>
+          <mat-checkbox class="check-private" formControlName="private">Private</mat-checkbox>
         </div>
 
         <div>
           <mat-form-field class="example-full-width">
             <mat-label>Price per person in €</mat-label>
-            <input matInput>
+            <input matInput type="number" step="0.01" formControlName="pricePerPerson" min="0">
           </mat-form-field>
         </div>
       </div>
@@ -110,7 +110,7 @@
 
       <div class="submit-div">
         <button type="button" class="cancel-button" routerLink="/search-match">Cancel</button>
-        <button type="button" class="create-match-button">Create match!</button>
+        <button type="button" class="create-match-button" (click)="createMatch()">Create match!</button>
       </div>
     </form>
   </div>

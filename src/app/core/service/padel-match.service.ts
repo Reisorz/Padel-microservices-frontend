@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PadelMatchDTO } from '../model/padel-match-dto';
+import { CreateMatchRequest } from '../model/create-match-request';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PadelMatchService {
     return this.http.get<PadelMatchDTO[]>(`${this.urlBase}/get-all-matches-and-players`);
   }
 
-  createMatch(){
-    
+  createMatch(match: CreateMatchRequest){
+    return this.http.post<{matchId: number}>(`${this.urlBase}/create-match`, match);
   }
 }

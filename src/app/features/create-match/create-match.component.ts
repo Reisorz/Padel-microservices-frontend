@@ -12,11 +12,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewCourtDialogComponent } from './new-court-dialog/new-court-dialog.component';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { SelectPlayerDialogComponent } from './select-player-dialog/select-player-dialog.component';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CreateMatchRequest } from '../../core/model/create-match-request';
+import { ToastrService } from 'ngx-toastr';
+import moment from 'moment';
+import { PadelMatchService } from '../../core/service/padel-match.service';
 
 @Component({
   selector: 'app-create-match',
   standalone: true,
-  imports: [RouterModule, MaterialModule, CommonModule, NgxMatTimepickerModule],
+  imports: [RouterModule, MaterialModule, CommonModule, NgxMatTimepickerModule, FormsModule, ReactiveFormsModule],
   templateUrl: './create-match.component.html',
   styleUrl: './create-match.component.css',
 })
@@ -26,15 +31,28 @@ export class CreateMatchComponent {
   teamB: (UserDto | null)[] = [null, null];
   organizer: UserDto;
   selectedCourt: PadelCourtDTO;
+  createMatchFormGroup: FormGroup;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private tokenService: TokenService,
-    private courtService: PadelCourtService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
+    private matchService: PadelMatchService
   ) {
     this.getOrganizer();
+
+    this.createMatchFormGroup = this.formBuilder.group({
+      matchDate: [null, Validators.required],
+      matchTime: [null, Validators.required],
+      durationInMinutes: [null, Validators.required],
+      competitive: [false, Validators.required],
+      private: [false, Validators.required],
+      pricePerPerson: [, Validators.required],
+      padelCourtId: [null, Validators.required]
+    });
   }
 
   getOrganizer() {
@@ -59,6 +77,7 @@ export class CreateMatchComponent {
     dialogRef.afterClosed().subscribe((selectedCourt: PadelCourtDTO | undefined) => {
       if (selectedCourt) {
         this.selectedCourt = selectedCourt;
+        this.createMatchFormGroup.get('padelCourtId')!.setValue(selectedCourt.id);
       }
     });
   }
@@ -74,6 +93,7 @@ export class CreateMatchComponent {
     dialogRef.afterClosed().subscribe((selectedCourt: PadelCourtDTO | undefined) => {
       if (selectedCourt) {
         this.selectedCourt = selectedCourt;
+        this.createMatchFormGroup.get('padelCourtId')!.setValue(selectedCourt.id);
       }
     });
   }
@@ -100,4 +120,54 @@ export class CreateMatchComponent {
       }
     });
   }
+
+  createMatch() {
+  if (this.createMatchFormGroup.invalid) {
+    this.toastr.error("Please, fill all the form fields", "Invalid form");
+    return;
+  }
+  const formValue = { ...this.createMatchFormGroup.value };
+
+  const date: Date = formValue.matchDate;
+  const time: string = formValue.matchTime;
+  const duration: number = formValue.durationInMinutes;
+
+  //Set dates into correct format
+  const startMoment = moment(
+    `${moment(date).format('YYYY-MM-DD')}T${time}`,
+    'YYYY-MM-DDTHH:mm'
+  );
+  const endMoment = startMoment.clone().add(duration, 'minutes');
+
+  const matchDateStart = startMoment.format("YYYY-MM-DDTHH:mm");
+  const matchDateEnd   = endMoment.format("YYYY-MM-DDTHH:mm");
+
+  //Delete unnecessary attributes.
+  delete formValue.matchDate;
+  delete formValue.matchTime;
+
+  const matchLevelStart: number = this.organizer.padelLevel - 0.5;
+  const matchLevelEnd: number = this.organizer.padelLevel + 1;
+
+  const request: CreateMatchRequest = {
+    ...formValue,
+    matchLevelEnd,
+    matchLevelStart,
+    matchDateStart,
+    matchDateEnd,
+    teamA: this.teamA.filter(p => p).map(p => p!.id),
+    teamB: this.teamB.filter(p => p).map(p => p!.id),
+    organizer: this.organizer.id
+  };
+
+  console.log(request);
+
+
+  this.matchService.createMatch(request).subscribe({
+    next: () => this.router.navigate(['/search-match']),
+    error: err => console.error(err)
+  });
 }
+
+}
+
