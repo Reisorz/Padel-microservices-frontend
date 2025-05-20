@@ -19,14 +19,14 @@
           <ng-container *ngFor="let player of getTeamPlayers(match, 'A')">
             <div class="player">
               <ng-container *ngIf="player; else joinSlotA">
-                <div class="player-photo"></div>
+                <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}" alt="{{player.avatarImageUrl}}"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
               </ng-container>
               <ng-template #joinSlotA>
                 <div class="join-slot">
                   <div class="player">
-                    <div class="player-photo"></div>
+                    <div class="player-photo"><img class="join-symbol" src="/assets/plus-icon-blue.svg"></div>
                     <div class="join">Join</div>
                   </div>
                 </div>
@@ -39,14 +39,14 @@
           <ng-container *ngFor="let player of getTeamPlayers(match, 'B')">
             <div class="player">
               <ng-container *ngIf="player; else joinSlotB">
-                <div class="player-photo"></div>
+                <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}" alt="{{player.avatarImageUrl}}"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
               </ng-container>
               <ng-template #joinSlotB>
                 <div class="join-slot">
                   <div class="player">
-                    <div class="player-photo"></div>
+                    <div class="player-photo"><img class="join-symbol" src="/assets/plus-icon-blue.svg"></div>
                     <div class="join">Join</div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ export class UserDto {
     city: string;
     padelLevel: number;
     preferredSide: PreferredSide;
+    avatarImageUrl: string;
 }
 
 enum PreferredSide {

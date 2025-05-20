@@ -4,6 +4,7 @@ export class MatchPlayer {
     padelLevel: number;
     organizer: boolean;
     team: Team;
+    avatarImageUrl: string;
 }
 
 export enum Team {
