@@ -15,6 +15,7 @@ import { MatchPlayer } from '../../core/model/match-player';
 })
 export class SearchMatchComponent {
   listPadelMatches: PadelMatchDTO[];
+  
 
   constructor(
     private router: RouterModule,
@@ -25,7 +26,7 @@ export class SearchMatchComponent {
   }
 
   getPadelMatches() {
-    this.padelMatchService.getAllMatchesAndPlayers().subscribe({
+    this.padelMatchService.getAllMatchesAndPlayersWithSpecifications().subscribe({
       next: (data) => {
         this.listPadelMatches = data.map((match) => ({
           ...match,
