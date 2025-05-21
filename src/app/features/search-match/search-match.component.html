@@ -1,6 +1,11 @@
 <section class="matches-section">
   <div class="filters-div">
-    <div>Filters</div>
+
+    <div class="filters">
+      <div>Date picker</div>
+      <mat-checkbox checked (change)="onCheckboxChange($event)">Only my level</mat-checkbox>
+    </div>
+
     <button class="new-match-button" routerLink="/create-match">New match</button>
   </div>
   <div class="matches-grid">

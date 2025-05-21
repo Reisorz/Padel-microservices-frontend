@@ -5,16 +5,20 @@ import { ToastrModule } from 'ngx-toastr';
 import { PadelMatchDTO } from '../../core/model/padel-match-dto';
 import { PadelMatchService } from '../../core/service/padel-match.service';
 import { MatchPlayer } from '../../core/model/match-player';
+import { MaterialModule } from '../../material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-search-match',
   standalone: true,
-  imports: [RouterModule, CommonModule, ToastrModule],
+  imports: [RouterModule, CommonModule, ToastrModule, MaterialModule, ReactiveFormsModule, FormsModule],
   templateUrl: './search-match.component.html',
   styleUrl: './search-match.component.css',
 })
 export class SearchMatchComponent {
   listPadelMatches: PadelMatchDTO[];
+  userPadelLevel: number | null = Number(localStorage.getItem("userPadelLevel"));
   
 
   constructor(
@@ -26,7 +30,14 @@ export class SearchMatchComponent {
   }
 
   getPadelMatches() {
-    this.padelMatchService.getAllMatchesAndPlayersWithSpecifications().subscribe({
+    let level: number | undefined
+    if(this.userPadelLevel == null) {
+      level = undefined;
+    } else {
+      level = this.userPadelLevel;
+    }
+
+    this.padelMatchService.getAllMatchesAndPlayersWithSpecifications(level).subscribe({
       next: (data) => {
         this.listPadelMatches = data.map((match) => ({
           ...match,
@@ -49,5 +60,15 @@ export class SearchMatchComponent {
     }
     return teamPlayers;
   }
+
+  onCheckboxChange(event: MatCheckboxChange): void {
+  if (event.checked) {
+    this.userPadelLevel = Number(localStorage.getItem("userPadelLevel"));
+    this.getPadelMatches();
+  } else {
+    this.userPadelLevel = null;
+    this.getPadelMatches();
+  }
+}
 
 }

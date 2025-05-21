@@ -1,3 +1,4 @@
+
 .matches-section{
     min-height: 100vh;
     height: fit-content;
@@ -9,6 +10,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.filters{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    gap: 50px;
+
 }
 
 .new-match-button{
