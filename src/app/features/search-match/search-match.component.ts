@@ -8,18 +8,22 @@ import { MatchPlayer } from '../../core/model/match-player';
 import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { DateRemoveEvent, NgxMultipleDatesModule } from 'ngx-multiple-dates';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import moment from 'moment';
 
 @Component({
   selector: 'app-search-match',
   standalone: true,
-  imports: [RouterModule, CommonModule, ToastrModule, MaterialModule, ReactiveFormsModule, FormsModule],
+  imports: [RouterModule, CommonModule, ToastrModule, MaterialModule, ReactiveFormsModule, FormsModule, NgxMultipleDatesModule],
   templateUrl: './search-match.component.html',
-  styleUrl: './search-match.component.css',
+  styleUrl: './search-match.component.css'
 })
 export class SearchMatchComponent {
   listPadelMatches: PadelMatchDTO[];
   userPadelLevel: number | null = Number(localStorage.getItem("userPadelLevel"));
-  
+  selectedDates: Date[] = [];
+
 
   constructor(
     private router: RouterModule,
@@ -31,13 +35,20 @@ export class SearchMatchComponent {
 
   getPadelMatches() {
     let level: number | undefined
-    if(this.userPadelLevel == null) {
+    if (this.userPadelLevel == null) {
       level = undefined;
     } else {
       level = this.userPadelLevel;
     }
 
-    this.padelMatchService.getAllMatchesAndPlayersWithSpecifications(level).subscribe({
+    let formatedDates: string[] | undefined;
+    if (this.selectedDates.length == 0) {
+      formatedDates = undefined;
+    } else {
+      formatedDates = this.transformDatesIntoStrings(this.selectedDates);
+    }
+
+    this.padelMatchService.getAllMatchesAndPlayersWithSpecifications(level, formatedDates).subscribe({
       next: (data) => {
         this.listPadelMatches = data.map((match) => ({
           ...match,
@@ -62,13 +73,20 @@ export class SearchMatchComponent {
   }
 
   onCheckboxChange(event: MatCheckboxChange): void {
-  if (event.checked) {
-    this.userPadelLevel = Number(localStorage.getItem("userPadelLevel"));
-    this.getPadelMatches();
-  } else {
-    this.userPadelLevel = null;
-    this.getPadelMatches();
+    if (event.checked) {
+      this.userPadelLevel = Number(localStorage.getItem("userPadelLevel"));
+    } else {
+      this.userPadelLevel = null;
+    }
   }
-}
+
+  transformDatesIntoStrings(dates: Date[]) {
+    let formatedDates: string[] = [];
+    for (let date of dates) {
+      let stringDate = moment(date).format("YYYY-MM-DDTHH:mm")
+      formatedDates.push(stringDate);
+    }
+    return formatedDates;
+  }
 
 }

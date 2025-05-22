@@ -6,8 +6,7 @@
       <div class="date-time-section">
         <mat-form-field class="datepicker">
           <mat-label>Match date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="matchDate" />
-          <mat-hint>DD/MM/YYYY</mat-hint>
+          <input matInput [matDatepicker]="picker" formControlName="matchDate" readonly/>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

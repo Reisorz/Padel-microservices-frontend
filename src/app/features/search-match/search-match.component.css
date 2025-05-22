@@ -14,12 +14,42 @@
 
 .filters{
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 50px;
+    width: 100%;
+    margin-left: 30px;
     gap: 50px;
-
 }
+
+.filters mat-form-field{
+    margin-top: 20px;
+    min-width: 700px;
+}
+
+.filters-button{
+    border: none;
+    border-radius: 200px;
+    background-color: #294C60;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.filters-button:hover{
+    background-color: #294c60d2;
+}
+
+.sliders-icon{
+    height: 30px;
+}
+
+.checkbox{
+    transform:scale(1.5);
+}
+
+.checkbox-text{
+    font-weight: bold;
+}
+
 
 .new-match-button{
     height: 60px;
@@ -164,3 +194,5 @@ hr{
 
     height: 100%;
 }
+
+

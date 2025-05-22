@@ -2,8 +2,17 @@
   <div class="filters-div">
 
     <div class="filters">
-      <div>Date picker</div>
-      <mat-checkbox checked (change)="onCheckboxChange($event)">Only my level</mat-checkbox>
+      <button class="filters-button" (click)="getPadelMatches()"><img class="sliders-icon" src="/assets/sliders-icon.svg" alt=""></button>
+      
+      <mat-form-field class="full-width">
+        <mat-label>Select dates to play</mat-label>
+        <ngx-multiple-dates [matDatepicker]="pickerSimple" placeholder="Select dates to play" format="DD-MM-YYYY"
+           #forValuesOutput="ngxMultipleDates" [(ngModel)]="selectedDates">
+        </ngx-multiple-dates>
+        <mat-datepicker #pickerSimple ></mat-datepicker>
+      </mat-form-field>
+
+      <mat-checkbox class="checkbox" checked (change)="onCheckboxChange($event)"><span class="checkbox-text">Only my level</span></mat-checkbox>
     </div>
 
     <button class="new-match-button" routerLink="/create-match">New match</button>
@@ -12,7 +21,7 @@
     <div class="match-card" *ngFor="let match of listPadelMatches">
       <div class="match-date">
         {{
-          match.matchDateStart | date : "EEEE d MMMM | HH:mm" : "Europe/Madrid"
+        match.matchDateStart | date : "EEEE d MMMM | HH:mm" : "Europe/Madrid"
         }}
       </div>
       <div class="match-level">
@@ -24,7 +33,8 @@
           <ng-container *ngFor="let player of getTeamPlayers(match, 'A')">
             <div class="player">
               <ng-container *ngIf="player; else joinSlotA">
-                <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}" alt="{{player.avatarImageUrl}}"></div>
+                <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}"
+                    alt="{{player.avatarImageUrl}}"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
               </ng-container>
@@ -44,7 +54,8 @@
           <ng-container *ngFor="let player of getTeamPlayers(match, 'B')">
             <div class="player">
               <ng-container *ngIf="player; else joinSlotB">
-                <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}" alt="{{player.avatarImageUrl}}"></div>
+                <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}"
+                    alt="{{player.avatarImageUrl}}"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
               </ng-container>
