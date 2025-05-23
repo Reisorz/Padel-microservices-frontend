@@ -1,8 +1,12 @@
 <section class="users-list-section">
     <h1>Select a player</h1>
-    <ul>
-        <li class="user" *ngFor="let user of users" (click)="selectUser(user)">
-            <div>Photo: {{user.name}}</div>
-        </li>
-    </ul>
+    <div class="user-grid">
+        <div class="user-card" *ngFor="let user of users" (click)="selectUser(user)">
+            <div class="player-photo"><img class="player-photo-img" src="{{user.avatarImageUrl}}">
+            </div>
+            <div class="user-name">{{user.name}}</div>
+            <div class="user-level"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="bar_chart"></mat-icon>
+                {{user.padelLevel}}</div>
+        </div>
+    </div>
 </section>

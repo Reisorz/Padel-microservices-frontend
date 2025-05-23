@@ -50,7 +50,7 @@ export class CreateMatchComponent {
       durationInMinutes: [null, Validators.required],
       competitive: [false, Validators.required],
       private: [false, Validators.required],
-      pricePerPerson: [, Validators.required],
+      pricePerPerson: [, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       padelCourtId: [null, Validators.required]
     });
   }
@@ -123,6 +123,7 @@ export class CreateMatchComponent {
 
   createMatch() {
   if (this.createMatchFormGroup.invalid) {
+    this.createMatchFormGroup.markAllAsTouched();
     this.toastr.error("Please, fill all the form fields", "Invalid form");
     return;
   }

@@ -16,6 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {  DateAdapter, MatNativeDateModule } from "@angular/material/core";
 import { MatMomentDateModule, provideMomentDateAdapter } from "@angular/material-moment-adapter";
 import { MY_DATE_FORMAT } from "./core/date-format/date-format";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
     exports: [
@@ -35,7 +36,8 @@ import { MY_DATE_FORMAT } from "./core/date-format/date-format";
         MatDatepickerModule,
         MatNativeDateModule,
         MatMomentDateModule,
-        MatDialogModule
+        MatDialogModule,
+        MatIconModule
     ],
     providers: [ provideMomentDateAdapter(MY_DATE_FORMAT, { useUtc: true })
     ]

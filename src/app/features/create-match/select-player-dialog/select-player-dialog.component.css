@@ -13,16 +13,60 @@ h1{
     color: #001B2E;
 }
 
-.user{
+.user-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 8fr));
+    gap: 15px;
+    justify-content: left;
+    margin: 30px;
+    padding-bottom: 180px;
     transition: transform 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
+}
+
+.user-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border: solid;
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: #ADB6C4;
+    padding-top: 20px;
+    padding-bottom: 20px;
     cursor: pointer;
 }
 
-.user:hover{
+.user-card:hover{
     transform: scale(1.02);
+}
+
+.player-photo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px; 
+    height: 75px;
+    border-radius: 50%; 
+    overflow: hidden;
+    border: 4px solid #fff; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+}
+
+.player-photo-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name{
+    margin-top: 10px;
+}
+
+.user-level{
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 

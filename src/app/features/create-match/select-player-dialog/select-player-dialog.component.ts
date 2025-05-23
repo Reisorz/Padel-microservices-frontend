@@ -3,11 +3,12 @@ import { UserDto } from '../../../core/model/user-dto';
 import { UserService } from '../../../core/service/user.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../../material.module';
 
 @Component({
   selector: 'app-select-player-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MaterialModule],
   templateUrl: './select-player-dialog.component.html',
   styleUrl: './select-player-dialog.component.css'
 })
@@ -33,4 +34,5 @@ export class SelectPlayerDialogComponent {
   selectUser(user: UserDto) {
     this.dialogRef.close(user);
   }
+
 }

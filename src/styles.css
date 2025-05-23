@@ -10,9 +10,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-
 /* Timepicker styles */
-
 .timepicker__main-content{
     margin-left: 20px;
     margin-right: 20px;
@@ -21,5 +19,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 div.ngx-mat-timepicker-dialog > mat-dialog-container [mat-dialog-content] mat-toolbar.timepicker-header{
     padding-top: 20px;
 }
-
-/* Timepicker styles */
