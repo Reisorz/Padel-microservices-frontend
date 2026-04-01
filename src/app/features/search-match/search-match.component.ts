@@ -20,7 +20,7 @@ import moment from 'moment';
   styleUrl: './search-match.component.css'
 })
 export class SearchMatchComponent {
-  listPadelMatches: PadelMatchDTO[];
+  listPadelMatches: PadelMatchDTO[]= [];
   userPadelLevel: number | null = Number(localStorage.getItem("userPadelLevel"));
   selectedDates: Date[] = [];
 
@@ -43,7 +43,7 @@ export class SearchMatchComponent {
 
     let formatedDates: string[] | undefined;
     if (this.selectedDates.length == 0) {
-      formatedDates = undefined;
+      formatedDates = this.transformDatesIntoStrings([new Date]);
     } else {
       formatedDates = this.transformDatesIntoStrings(this.selectedDates);
     }
@@ -78,6 +78,7 @@ export class SearchMatchComponent {
     } else {
       this.userPadelLevel = null;
     }
+    this.getPadelMatches();
   }
 
   transformDatesIntoStrings(dates: Date[]) {

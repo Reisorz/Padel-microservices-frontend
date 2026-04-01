@@ -75,6 +75,17 @@
     background-color: #00102ec7;
 }
 
+.no-results-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  margin: 20px;
+} 
+
 .matches-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 3fr));

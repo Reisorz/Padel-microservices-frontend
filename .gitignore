@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Others
-assets/avatar-images/
+/assets/avatar-images/

@@ -2,22 +2,24 @@
   <div class="filters-div">
 
     <div class="filters">
-      <button class="filters-button" (click)="getPadelMatches()"><img class="sliders-icon" src="/assets/sliders-icon.svg" alt=""></button>
-      
+      <button class="filters-button" (click)="getPadelMatches()"><img class="sliders-icon"
+          src="/assets/sliders-icon.svg" alt=""></button>
+
       <mat-form-field class="full-width">
         <mat-label>Select dates to play</mat-label>
         <ngx-multiple-dates [matDatepicker]="pickerSimple" placeholder="Select dates to play" format="DD-MM-YYYY"
-           #forValuesOutput="ngxMultipleDates" [(ngModel)]="selectedDates">
+          #forValuesOutput="ngxMultipleDates" [(ngModel)]="selectedDates" (ngModelChange)="getPadelMatches()">
         </ngx-multiple-dates>
-        <mat-datepicker #pickerSimple ></mat-datepicker>
+        <mat-datepicker #pickerSimple></mat-datepicker>
       </mat-form-field>
 
-      <mat-checkbox class="checkbox" checked (change)="onCheckboxChange($event)"><span class="checkbox-text">Only my level</span></mat-checkbox>
+      <mat-checkbox class="checkbox" checked (change)="onCheckboxChange($event)"><span class="checkbox-text">Only my
+          level</span></mat-checkbox>
     </div>
 
     <button class="new-match-button" routerLink="/create-match">New match</button>
   </div>
-  <div class="matches-grid">
+  <div class="matches-grid" *ngIf="listPadelMatches && listPadelMatches.length > 0; else noMatches">
     <div class="match-card" *ngFor="let match of listPadelMatches">
       <div class="match-date">
         {{
@@ -84,4 +86,12 @@
       </div>
     </div>
   </div>
+  <ng-template #noMatches>
+    <div class="no-results-container">
+      <div class="no-results-content">
+        <h3>No hay partidos disponibles</h3>
+        <p>Prueba a seleccionar otras fechas o cambiar el filtro de nivel.</p>
+      </div>
+    </div>
+  </ng-template>
 </section>
