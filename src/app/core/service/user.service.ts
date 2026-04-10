@@ -24,4 +24,5 @@ export class UserService {
   getAllUsers(){
     return this.http.get<UserDto[]>(`${this.urlBase}/get-all-users`)
   }
+
 }

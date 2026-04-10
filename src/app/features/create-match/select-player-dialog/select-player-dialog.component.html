@@ -1,12 +1,29 @@
 <section class="users-list-section">
     <h1>Select a player</h1>
+    
     <div class="user-grid">
         <div class="user-card" *ngFor="let user of users" (click)="selectUser(user)">
-            <div class="player-photo"><img class="player-photo-img" src="{{user.avatarImageUrl}}">
+            <div class="player-photo">
+                <img class="player-photo-img" [src]="user.avatarImageUrl" alt="{{user.name}}">
             </div>
             <div class="user-name">{{user.name}}</div>
-            <div class="user-level"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="bar_chart"></mat-icon>
-                {{user.padelLevel}}</div>
+            <div class="user-level">
+                <mat-icon fontIcon="bar_chart"></mat-icon>
+                {{user.padelLevel}}
+            </div>
         </div>
+    </div>
+
+    <div class="load-more-container">
+        <button
+                *ngIf="!isLastPage" 
+                (click)="loadMore()"
+                class="load-more-btn">
+            Load more players
+        </button>
+        
+        <p class="end-message" *ngIf="isLastPage && users.length > 0">
+            No more players to show
+        </p>
     </div>
 </section>

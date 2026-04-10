@@ -1,10 +1,10 @@
 export class UserDto {
     id: number;
     name: string;
-    eamil: string;
+    eamil: string | null;
     city: string;
     padelLevel: number;
-    preferredSide: PreferredSide;
+    preferredSide: PreferredSide | null;
     avatarImageUrl: string;
 }
 
