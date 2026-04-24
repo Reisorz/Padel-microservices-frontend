@@ -1,0 +1,89 @@
+<section class="match-card">
+  <h1>Join the match!</h1>
+  <div class="create-match-form">
+
+
+    <div class="date-time-section">
+      <div>Date: {{ match.matchDateStart | date:'EEEE, MMMM d' }}</div>
+      <div>Time: {{ match.matchDateStart | date:'HH:mm' }}</div>
+    </div>
+
+    <div class="type-price-section">
+      <div>{{ match.competitive ? 'Competitive' : 'Friendly' }}</div>
+      <div>{{ match.private ? 'Private' : 'Public' }}</div>
+    </div>
+
+    <div class="team-letter">
+      <div>A</div>
+      <div>B</div>
+    </div>
+
+    <div class="players-section">
+      <div class="team">
+        <ng-container *ngFor="let player of teamA; index as i">
+          <div class="player">
+            <ng-container *ngIf="player; else joinSlotA">
+
+              <div class="remove-player-icon" (click)="removePlayer('A', i)" *ngIf="i !== 0">
+                <mat-icon>close</mat-icon>
+              </div>
+
+              <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}"
+                  alt="Player photo"></div>
+              <div>{{ player.name }}</div>
+              <div class="player-level">{{ player.padelLevel }}</div>
+
+            </ng-container>
+            <ng-template #joinSlotA>
+              <div class="join-slot" (click)="addPlayerDialog('A', i)">
+                <div class="player">
+                  <div class="player-photo"><img class="join-symbol" src="/assets/plus-icon-blue.svg"></div>
+                  <div class="join">Add</div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </ng-container>
+      </div>
+      <hr />
+      <div class="team">
+        <ng-container *ngFor="let player of teamB; index as i">
+          <div class="player">
+            <ng-container *ngIf="player; else joinSlotB">
+
+              <div class="remove-player-icon" (click)="removePlayer('B', i)">
+                <mat-icon>close</mat-icon>
+              </div>
+
+              <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}"
+                  alt="Player photo"></div>
+              <div>{{ player.name }}</div>
+              <div class="player-level">{{ player.padelLevel }}</div>
+
+            </ng-container>
+            <ng-template #joinSlotB>
+              <div class="join-slot" (click)="addPlayerDialog('B', i)">
+                <div class="player">
+                  <div class="player-photo"><img class="join-symbol" src="/assets/plus-icon-blue.svg"></div>
+                  <div class="join">Add</div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="court-section">
+      <div class="court">
+        <div>{{ court.name }} | Court Nº {{ court.number }} | {{ court.address }}</div>
+        <div>{{ court.glass ? 'Glass' : 'Concrete' }} | {{ court.exterior ? 'Outdoor' : 'Indoor' }}</div>
+      </div>
+    </div>
+
+    <div class="submit-div">
+      <button type="button" class="cancel-button" routerLink="/search-match">Cancel</button>
+      <button type="button" class="create-match-button">Create match!</button>
+    </div>
+  </div>
+</section>

@@ -20,4 +20,8 @@ export class PadelCourtService {
     return this.http.post<PadelCourtDTO>(`${this.urlBase}/save-padel-court`, court);
   }
 
+  getPadelCourtById(courtId: number){
+    return this.http.get<PadelCourtDTO>(`${this.urlBase}/get-padel-court-by-id/${courtId}`);
+  }
+
 }

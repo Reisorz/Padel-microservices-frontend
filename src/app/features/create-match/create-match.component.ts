@@ -121,6 +121,14 @@ export class CreateMatchComponent {
     });
   }
 
+  removePlayer(team: 'A' | 'B', index: number){
+    if (team === 'A') {
+      this.teamA[index] = null;
+    } else {
+      this.teamB[index] = null;
+    }
+  }
+
   createMatch() {
   if (this.createMatchFormGroup.invalid) {
     this.createMatchFormGroup.markAllAsTouched();

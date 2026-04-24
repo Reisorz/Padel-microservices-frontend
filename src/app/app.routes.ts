@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { authGuard } from './core/guard/auth.guard';
 import { CreateMatchComponent } from './features/create-match/create-match.component';
+import { MatchCardComponent } from './features/match-card/match-card.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -18,7 +19,8 @@ export const routes: Routes = [
       component: MainLayoutComponent,
       children: [
         { path: 'search-match', component: SearchMatchComponent, canActivate:[authGuard]},
-        { path: 'create-match', component: CreateMatchComponent, canActivate:[authGuard]}
+        { path: 'create-match', component: CreateMatchComponent, canActivate:[authGuard]},
+        { path: 'match-card/:id', component: MatchCardComponent, canActivate:[authGuard]}
       ]
     }
   ];

@@ -6,7 +6,7 @@
       <div class="date-time-section">
         <mat-form-field class="datepicker">
           <mat-label>Match date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="matchDate" readonly/>
+          <input matInput [matDatepicker]="picker" formControlName="matchDate" readonly />
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -51,10 +51,16 @@
           <ng-container *ngFor="let player of teamA; index as i">
             <div class="player">
               <ng-container *ngIf="player; else joinSlotA">
+
+                <div class="remove-player-icon" (click)="removePlayer('A', i)" *ngIf="i !== 0" >
+                  <mat-icon>close</mat-icon>
+                </div>
+
                 <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}"
                     alt="Player photo"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
+
               </ng-container>
               <ng-template #joinSlotA>
                 <div class="join-slot" (click)="addPlayerDialog('A', i)">
@@ -72,10 +78,16 @@
           <ng-container *ngFor="let player of teamB; index as i">
             <div class="player">
               <ng-container *ngIf="player; else joinSlotB">
+
+                <div class="remove-player-icon" (click)="removePlayer('B', i)">
+                  <mat-icon>close</mat-icon>
+                </div>
+
                 <div class="player-photo"><img class="player-photo-img" src="{{player.avatarImageUrl}}"
                     alt="Player photo"></div>
                 <div>{{ player.name }}</div>
                 <div class="player-level">{{ player.padelLevel }}</div>
+
               </ng-container>
               <ng-template #joinSlotB>
                 <div class="join-slot" (click)="addPlayerDialog('B', i)">

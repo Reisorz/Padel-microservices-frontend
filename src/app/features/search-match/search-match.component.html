@@ -20,7 +20,7 @@
     <button class="new-match-button" routerLink="/create-match">New match</button>
   </div>
   <div class="matches-grid" *ngIf="listPadelMatches && listPadelMatches.length > 0; else noMatches">
-    <div class="match-card" *ngFor="let match of listPadelMatches">
+    <div class="match-card" *ngFor="let match of listPadelMatches" [routerLink]="['/match-card', match.id]"]>
       <div class="match-date">
         {{
         match.matchDateStart | date : "EEEE d MMMM | HH:mm" : "Europe/Madrid"
