@@ -6,6 +6,7 @@ export class MatchUserDTO {
   matchId: number;
   userId: number;
   isOrganizer: boolean;
+  slot: number;
   team: Team;
 }
 

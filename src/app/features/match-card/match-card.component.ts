@@ -41,33 +41,30 @@ export class MatchCardComponent implements OnInit {
 
 getPlayers(): void {
   const idParam = this.route.snapshot.paramMap.get('id');
-  if (idParam) {
-    const matchId = Number(idParam);
-    this.matchUserService.getAllUsersFromMatch(matchId).subscribe({
-      next: (players) => {
+  if (!idParam) return;
 
-        players.forEach(player => {
-          this.userService.getUserById(player.userId).subscribe(userData => {
-            if (player.team === 'A') {
-              this.fillFirstAvailableSlot(this.teamA, userData);
-            } else {
-              this.fillFirstAvailableSlot(this.teamB, userData);
-            }
-          });
+  const matchId = Number(idParam);
+  this.matchUserService.getAllUsersFromMatch(matchId).subscribe({
+    next: (matchUsers) => {
+      this.teamA = [null, null];
+      this.teamB = [null, null];
+
+      matchUsers.forEach(matchUser => {
+        this.userService.getUserById(matchUser.userId).subscribe({
+          next: (userData) => {
+            if (matchUser.slot === 0) this.teamA[0] = userData;
+            if (matchUser.slot === 1) this.teamA[1] = userData;
+            if (matchUser.slot === 2) this.teamB[0] = userData;
+            if (matchUser.slot === 3) this.teamB[1] = userData;
+          },
+          error: (err) => console.error('Error loading user data:', err)
         });
-      },
-      error: (err) => console.error('Error loading players:', err)
-    });
-  }
+      });
+    },
+    error: (err) => console.error('Error loading match-users:', err)
+  });
 }
 
-
-private fillFirstAvailableSlot(team: (UserDto | null)[], user: UserDto): void {
-  const index = team.findIndex(slot => slot === null);
-  if (index !== -1) {
-    team[index] = user;
-  }
-}
 
   getMatchInfo(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -94,14 +91,6 @@ private fillFirstAvailableSlot(team: (UserDto | null)[], user: UserDto): void {
 
   }
 
-
-
-
-
-  //Add player dialog
-  addPlayerDialog(team: 'A' | 'B', index: number): void {
-
-  }
 
   removePlayer(team: 'A' | 'B', index: number) {
     if (team === 'A') {

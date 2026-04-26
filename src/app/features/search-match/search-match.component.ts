@@ -63,14 +63,14 @@ export class SearchMatchComponent {
     });
   }
 
-  getTeamPlayers(match: PadelMatchDTO, team: 'A' | 'B'): (MatchPlayer | null)[] {
-    const teamPlayers: (MatchPlayer | null)[] = match.players.filter((player: MatchPlayer) => player.team === team);
+getTeamPlayers(match: PadelMatchDTO, team: 'A' | 'B'): (MatchPlayer | null)[] {
+  const slotsToLookFor = team === 'A' ? [0, 1] : [2, 3];
 
-    while (teamPlayers.length < 2) {
-      teamPlayers.push(null);
-    }
-    return teamPlayers;
-  }
+  return slotsToLookFor.map(slotId => {
+    const playerFound = match.players.find(p => p.slot === slotId);
+    return playerFound ? playerFound : null;
+  });
+}
 
   onCheckboxChange(event: MatCheckboxChange): void {
     if (event.checked) {

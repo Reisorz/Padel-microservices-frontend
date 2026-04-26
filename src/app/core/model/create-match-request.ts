@@ -1,14 +1,18 @@
-export class CreateMatchRequest {
-  matchDateStart: string; // "yyyy-MM-dd'T'HH:mm"
-  matchDateEnd: string; 
+export interface PlayerSlot {
+  userId: number;
+  slot: number;
+}
+
+export interface CreateMatchRequest {
+  matchDateStart: string;
+  matchDateEnd: string;
   durationInMinutes: number;
-  competitive: boolean;
-  private: boolean;
+  isCompetitive: boolean;
+  isPrivate: boolean;
   pricePerPerson: number;
   matchLevelStart: number;
   matchLevelEnd: number;
-  teamA: number[];
-  teamB: number[];
+  players: PlayerSlot[];
   organizer: number;
   padelCourtId: number;
 }

@@ -3,6 +3,7 @@ export class MatchPlayer {
     name: string;
     padelLevel: number;
     organizer: boolean;
+    slot: number;
     team: Team;
     avatarImageUrl: string;
 }

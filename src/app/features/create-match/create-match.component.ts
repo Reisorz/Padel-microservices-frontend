@@ -129,52 +129,60 @@ export class CreateMatchComponent {
     }
   }
 
-  createMatch() {
+createMatch() {
   if (this.createMatchFormGroup.invalid) {
     this.createMatchFormGroup.markAllAsTouched();
     this.toastr.error("Please, fill all the form fields", "Invalid form");
     return;
   }
+
   const formValue = { ...this.createMatchFormGroup.value };
 
-  const date: Date = formValue.matchDate;
-  const time: string = formValue.matchTime;
-  const duration: number = formValue.durationInMinutes;
-
-  //Set dates into correct format
+  //Date formatting
   const startMoment = moment(
-    `${moment(date).format('YYYY-MM-DD')}T${time}`,
+    `${moment(formValue.matchDate).format('YYYY-MM-DD')}T${formValue.matchTime}`,
     'YYYY-MM-DDTHH:mm'
   );
-  const endMoment = startMoment.clone().add(duration, 'minutes');
+  const endMoment = startMoment.clone().add(formValue.durationInMinutes, 'minutes');
 
-  const matchDateStart = startMoment.format("YYYY-MM-DDTHH:mm");
-  const matchDateEnd   = endMoment.format("YYYY-MM-DDTHH:mm");
+  //Player slots
+  const players: any[] = [];
 
-  //Delete unnecessary attributes.
-  delete formValue.matchDate;
-  delete formValue.matchTime;
+  // Team A
+  this.teamA.forEach((p, i) => {
+    if (p) players.push({ userId: p.id, slot: i }); 
+  });
 
-  const matchLevelStart: number = this.organizer.padelLevel - 0.5;
-  const matchLevelEnd: number = this.organizer.padelLevel + 1;
+  // Team B
+  this.teamB.forEach((p, i) => {
+    if (p) players.push({ userId: p.id, slot: i + 2 });
+  });
 
   const request: CreateMatchRequest = {
-    ...formValue,
-    matchLevelEnd,
-    matchLevelStart,
-    matchDateStart,
-    matchDateEnd,
-    teamA: this.teamA.filter(p => p).map(p => p!.id),
-    teamB: this.teamB.filter(p => p).map(p => p!.id),
-    organizer: this.organizer.id
+    matchDateStart: startMoment.format("YYYY-MM-DDTHH:mm"),
+    matchDateEnd: endMoment.format("YYYY-MM-DDTHH:mm"),
+    durationInMinutes: formValue.durationInMinutes,
+    isCompetitive: formValue.competitive,
+    isPrivate: formValue.private,
+    pricePerPerson: Number(formValue.pricePerPerson),
+    matchLevelStart: this.organizer.padelLevel - 0.5,
+    matchLevelEnd: this.organizer.padelLevel + 1,
+    padelCourtId: formValue.padelCourtId,
+    organizer: this.organizer.id,
+    players: players 
   };
 
-  console.log(request);
-
+  console.log('Sending request:', request);
 
   this.matchService.createMatch(request).subscribe({
-    next: () => this.router.navigate(['/search-match']),
-    error: err => console.error(err)
+    next: () => {
+      this.toastr.success("Match created successfully!");
+      this.router.navigate(['/search-match']);
+    },
+    error: err => {
+      console.error(err);
+      this.toastr.error("Error creating match");
+    }
   });
 }
 
