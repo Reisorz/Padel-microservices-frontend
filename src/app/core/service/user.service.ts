@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserRegisterRequest } from '../model/user-register-request';
 import { UserDto } from '../model/user-dto';
@@ -23,6 +23,11 @@ export class UserService {
 
   getAllUsers(){
     return this.http.get<UserDto[]>(`${this.urlBase}/get-all-users`)
+  }
+
+  getUserByEmail(email: string){
+    const params = new HttpParams().set('email', email);
+    return this.http.get<UserDto>(`${this.urlBase}/get-user-by-email`, {params})
   }
 
 }

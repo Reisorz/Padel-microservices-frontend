@@ -1,6 +1,8 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { jwtDecode } from "jwt-decode";
+import { UserService } from './user.service';
+import e from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class TokenService {
   private TOKEN_KEY = "accessToken";
   private isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private userService: UserService) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -40,11 +42,21 @@ export class TokenService {
       const email = decoded.sub ?? '';
       const id = decoded.id ?? '';
       localStorage.setItem("email", email);
-      localStorage.setItem("id", id);
+      this.userService.getUserByEmail(email).subscribe({
+        next: (userDto) => {
+          if (userDto && userDto.id) {
+            localStorage.setItem("id", userDto.id.toString());
+            localStorage.setItem("userPadelLevel", userDto.padelLevel.toString())
+          }
+        },
+        error: (err) => {
+          console.error('Error obtaining user information', err);
+        }
+      });
     }
   }
 
-  public getUserId(){
+  public getUserId() {
     return Number(localStorage.getItem("id"))
   }
 
@@ -54,10 +66,10 @@ export class TokenService {
 
   isLoggedIn(): boolean {
     const token = this.getAccessToken();
-    if (!token){
+    if (!token) {
       return false;
-    } 
-  
+    }
+
     const payload = JSON.parse(atob(token.split('.')[1]));
     const expirationTime = payload.exp;
     const currentTime = Math.floor(Date.now() / 1000);

@@ -20,6 +20,7 @@ h1{
     gap: 20px;
     font-weight: bold;
     color: #294C60;
+    font-size: 1.3rem;
 }
 
 
@@ -43,6 +44,8 @@ h1{
     margin-bottom: 50px;
     font-weight: bold;
     color: #294C60;
+    font-size: 1.3rem;
+
 }
 
 .euro-suffix{
@@ -64,6 +67,7 @@ h1{
     justify-content: space-around;
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 500px;
 }
 
 .team{

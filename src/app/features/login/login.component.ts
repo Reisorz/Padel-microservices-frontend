@@ -39,18 +39,8 @@ export class LoginComponent {
         this.tokenService.setAccessToken(data.token);
         this.tokenService.setUserDetailsFromToken();
         const userId = this.tokenService.getUserId();
-        
-        this.userService.getUserById(userId).subscribe({
-          next: (user) => {
-            localStorage.setItem("userPadelLevel", user.padelLevel.toString());
-            this.toastr.success("You have logged in succesfully!", "Login completed!");
-            this.router.navigate(['/search-match']);
-          },
-          error: (error) => {
-            console.error("Error getting user padel level", error);
-            this.toastr.error("Failed to retrieve user info", "Login error");
-          }
-        });
+        this.toastr.success("You have logged in succesfully!", "Login completed!");
+        this.router.navigate(['/search-match']);
       },
       error: (error: any) => {
         console.log(error);
